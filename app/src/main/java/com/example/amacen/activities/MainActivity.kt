@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
 
         enableEdgeToEdge()
 
-       // setContentView(R.layout.activity_main)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -37,8 +35,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-
 
         adapter = CategoriasAdapter(categoriasList, { position -> val categoria = categoriasList[position]
                                                                   navigateToProductos(categoria) })

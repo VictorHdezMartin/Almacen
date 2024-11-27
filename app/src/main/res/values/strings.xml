@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">Gestión de almacén</string>
     <string name="categorias">Categorías</string>
-    <string name="productos">Categoría / Productos </string>
+    <string name="productos">Categoría / </string>
     <string name="buscar">Buscar</string>
-    <string name="producto_detail">Categoría / Producto / detalle</string>
+    <string name="articulo_detail">Categoría [%1$s] \n - %2$s </string>
+
+    <string name="menu_caracteristicas">Características</string>
+    <string name="menu_medidas">Medidas</string>
+    <string name="menu_imagenes">Galería</string>
 
 </resources>

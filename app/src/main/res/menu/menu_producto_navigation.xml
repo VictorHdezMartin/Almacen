@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_caracteristicas"
+        android:icon="@drawable/icono_caracteristicas"
+        app:showAsAction="always"
+        android:title="@string/menu_caracteristicas"/>
+    <item
+        android:id="@+id/menu_medidas"
+        android:icon="@drawable/icono_medidas"
+        app:showAsAction="always"
+        android:title="@string/menu_medidas"/>
+    <item
+        android:id="@+id/menu_imagenes"
+        android:icon="@drawable/icono_imagenes"
+        app:showAsAction="always"
+        android:title="@string/menu_imagenes"/>
+</menu>

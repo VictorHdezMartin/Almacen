@@ -18,13 +18,15 @@ import kotlinx.coroutines.launch
 
 class ProductosActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityProductosBinding
-    lateinit var adapter: ProductosAdapter
-    var productosList: List<ProductsClass> = emptyList()              // cargamos el listado de PRODUCTOS
-
     companion object {
         const val EXTRA_CATEGORIA_ID = "EXTRA_CATEGORIA_ID"
     }
+
+    lateinit var binding: ActivityProductosBinding
+    lateinit var adapter: ProductosAdapter
+    lateinit var categoria: String
+
+    var productosList: List<ProductsClass> = emptyList()              // cargamos el listado de PRODUCTO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +41,10 @@ class ProductosActivity : AppCompatActivity() {
             insets
         }
 
-        adapter= ProductosAdapter(productosList, { position -> val id_Producto =  productosList[position].id
-        navigateToDetailProducto(id_Producto) })
+        categoria = intent.getStringExtra(EXTRA_CATEGORIA_ID)!!       // pasamos la CATEGORIA seleccionada
+
+        adapter= ProductosAdapter(productosList, { position -> val idProducto =  productosList[position].id
+        navigateToDetailProducto(idProducto, categoria) })
 
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = GridLayoutManager(this, 2)  // nº columnas
@@ -50,8 +54,10 @@ class ProductosActivity : AppCompatActivity() {
 
 // Vamos al activity de Productos, pasando el parametro de busqueda de los productos de la categoria
 
-    private fun navigateToDetailProducto(id_Product: Int) { val intent = Intent(this, ProductoDetalleActivity::class.java)
-        intent.putExtra(ProductoDetalleActivity.EXTRA_PRODUCTO_ID, id_Product)
+    private fun navigateToDetailProducto(idProducto: Int, idCategoria: String) {
+            val intent = Intent(this, ProductoDetalleActivity::class.java)
+            intent.putExtra(ProductoDetalleActivity.EXTRA_CATEGORIA_ID, idCategoria)
+            intent.putExtra(ProductoDetalleActivity.EXTRA_PRODUCTO_ID, idProducto)
         startActivity(intent)
     }
 
@@ -61,9 +67,7 @@ class ProductosActivity : AppCompatActivity() {
 
         val service = RetroFitProvider.getRetroFit()                                                // aquí hacemos la consulta
 
-        var categoria = intent.getStringExtra(EXTRA_CATEGORIA_ID)!!
-
-        binding.productosCab.setText("${binding.productosCab.text} : ${categoria}")
+        binding.productosCab.setText("${binding.productosCab.text} ${categoria}")
 
         CoroutineScope(Dispatchers.IO).launch {                                    // hay que ejecutar la consulta en un hilo secundario
             try {
