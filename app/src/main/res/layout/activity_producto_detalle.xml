@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/articulo_detail"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="@color/white"/>
     </LinearLayout>

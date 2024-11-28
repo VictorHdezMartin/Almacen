@@ -64,7 +64,6 @@ class ProductoDetalleActivity: AppCompatActivity() {
 
     //  CREAMOS EL ADAPTER PARA EL RECYCLERVIEW DE LAS IMAGENES EN EL LAYOUT CONTENT_IMAGENES  -----
         imagenesAdapter = ImagenesAdapter(imagenesList, { position ->
-            //imagenSelect = imagenesList[position]                                                   // url item seleccionado
             navigateToImagenSelect(position)
         })
 
@@ -152,12 +151,17 @@ class ProductoDetalleActivity: AppCompatActivity() {
             }
         }
     }
+// revisar texto de la cabecera, la primera en mayuscula y el resto minusculas  --------------------
+    fun revisarCabecera(texto: String): String {
+      return texto.substring(0,1).uppercase() +                                                     // primer en mayúsculas
+             texto.substring(1, texto.length).lowercase()                                           // el resto minúsculas
+    }
 
 // Cargamos los elementos de la ficha del super heroe  ---------------------------------------------
     fun loadData() {
         var categoria = intent.getStringExtra(EXTRA_CATEGORIA_ID)!!
 
-        binding.cabArticulo.text = getString(R.string.articulo_detail, categoria, itemArticulo.title)
+         binding.cabArticulo.text = getString(R.string.articulo_detail, revisarCabecera(categoria), revisarCabecera(itemArticulo.title))
 
         with (binding) {
             caracteristicasContent.category.text = itemArticulo.category.toString()

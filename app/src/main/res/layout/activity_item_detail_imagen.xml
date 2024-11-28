@@ -31,7 +31,7 @@
             android:layout_weight="1"
             android:text="@string/articulo_detail"
             android:textColor="@color/white"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold" />
     </LinearLayout>
 

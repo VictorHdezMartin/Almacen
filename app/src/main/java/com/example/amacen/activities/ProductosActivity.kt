@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.amacen.R
 import com.example.amacen.adapters.ProductosAdapter
 import com.example.amacen.data.ProductsClass
 import com.example.amacen.databinding.ActivityProductosBinding
@@ -79,13 +80,18 @@ class ProductosActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+ // revisar texto de la cabecera, la primera en mayuscula y el resto minusculas  --------------------
+    fun revisarCabecera(texto: String): String {
+        return texto.substring(0,1).uppercase() +                                                     // primer en mayúsculas
+                texto.substring(1, texto.length).lowercase()                                           // el resto minúsculas
+    }
 // Cargamos los datos del las CATEGORIAS de la API  ------------------------------------------------
 
     private fun LoadProductosAPI() {
 
         val service = RetroFitProvider.getRetroFit()                                                // aquí hacemos la consulta
 
-        binding.productosCab.setText("${binding.productosCab.text} ${categoria}")
+        binding.productosCab.text = getString(R.string.productos, revisarCabecera(categoria))
 
         CoroutineScope(Dispatchers.IO).launch {                                                     // hay que ejecutar la consulta en un hilo secundario
             try {
