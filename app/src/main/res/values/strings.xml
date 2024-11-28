@@ -5,8 +5,31 @@
     <string name="buscar">Buscar</string>
     <string name="articulo_detail">Categoría [%1$s] \n - %2$s </string>
 
+<!-- menu_producto_navegacion  -->
     <string name="menu_caracteristicas">Características</string>
-    <string name="menu_medidas">Medidas</string>
+    <string name="menu_reviews">Reseñas</string>
     <string name="menu_imagenes">Galería</string>
+
+<!-- content_caracteristicas  -->
+    <string name="features_category">Categoría</string>
+    <string name="features_brand">Marca</string>
+    <string name="features_description">Descripción</string>
+    <string name="features_title">Nombre</string>
+    <string name="features_price">Precio</string>
+    <string name="features_returnPolicy">Política de devoluciones</string>
+    <string name="features_shippingInformation">Información de envío</string>
+    <string name="features_sku">Seguimiento inventario</string>
+    <string name="features_stock">Existencias</string>
+    <string name="features_warrantyInformation">Información de garantía</string>
+    <string name="features_weight">Peso</string>
+    <string name="features_minimumOrderQuantity">Pedido mínimo (uds)</string>
+    <string name="features_rating">Clasificación</string>
+
+<!-- content_reviews -->
+    <string name="reviews_comment">Comentario</string>
+    <string name="reviews_date">Fecha</string>
+    <string name="reviews_rating">Valoración</string>
+    <string name="reviews_reviewerEmail">Email</string>
+    <string name="reviews_reviewerName">Nombre</string>
 
 </resources>

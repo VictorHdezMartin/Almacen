@@ -36,19 +36,22 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        adapter = CategoriasAdapter(categoriasList, { position -> val categoria = categoriasList[position]
-                                                                  navigateToProductos(categoria) })
+        adapter = CategoriasAdapter(categoriasList, { position ->
+            val categoria = categoriasList[position]
+            navigateToProductos(categoria)
+        })
 
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = GridLayoutManager(this, 1)  // nº columnas
+        binding.CategoriasRecyclerView.adapter = adapter
+        binding.CategoriasRecyclerView.layoutManager = GridLayoutManager(this, 2)          // nº columnas
 
         LoadCategoriasAPI()
     }
 
 // Vamos al activity de Productos, pasando el parametro de busqueda de los productos de la categoria
 
-    private fun navigateToProductos(categoria: String){ val intent = Intent(this, ProductosActivity::class.java)
-                                                        intent.putExtra(ProductosActivity.EXTRA_CATEGORIA_ID, categoria)
+    private fun navigateToProductos(categoria: String) {
+        val intent = Intent(this, ProductosActivity::class.java)
+        intent.putExtra(ProductosActivity.EXTRA_CATEGORIA_ID, categoria)
         startActivity(intent)
     }
 
@@ -56,13 +59,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun LoadCategoriasAPI() {
 
-        val service = RetroFitProvider.getRetroFit()                               // aquí hacemos la consulta
+        val service = RetroFitProvider.getRetroFit()                                                // aquí hacemos la consulta
 
-        CoroutineScope(Dispatchers.IO).launch {                   // hay que ejecutar la consulta en un hilo secundario
+        CoroutineScope(Dispatchers.IO).launch {                                                     // hay que ejecutar la consulta en un hilo secundario
             try {
                 val result = service.CategoriasListResponse()
 
-                CoroutineScope(Dispatchers.Main).launch {         // volvemos al hilo principal para mostrar resultados
+                CoroutineScope(Dispatchers.Main).launch {                                           // volvemos al hilo principal para mostrar resultados
                     if (result.isEmpty()) {
                         // Toast.makeText(this, "No se han encontrado resultados", Toast.LENGTH_SHORT).show()
                     } else {

@@ -64,8 +64,8 @@
                 android:layout_marginTop="16dp" />
 
             <include
-                android:id="@+id/mediasContent"
-                layout="@layout/content_medidas"
+                android:id="@+id/reviewsContent"
+                layout="@layout/content_reviews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp" />

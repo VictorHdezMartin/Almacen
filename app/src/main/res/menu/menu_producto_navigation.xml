@@ -11,7 +11,7 @@
         android:id="@+id/menu_medidas"
         android:icon="@drawable/icono_medidas"
         app:showAsAction="always"
-        android:title="@string/menu_medidas"/>
+        android:title="@string/menu_reviews"/>
     <item
         android:id="@+id/menu_imagenes"
         android:icon="@drawable/icono_imagenes"

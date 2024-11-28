@@ -17,7 +17,7 @@ interface CategoriasService {
         @GET("category/{categoria}")
         suspend fun ProductosListResponse(@Path("categoria") categoria: String) : ProductosListResponse
 
-// llamada al articulo seleccionado     (?)  -------------------------------------------------------
+// llamada al articulo seleccionado     (OK)  -------------------------------------------------------
         @GET("{idArticulo}")
         suspend fun ArticuloListResponse(@Path("idArticulo") idArticulo: Int) : ArticuloClass
 }

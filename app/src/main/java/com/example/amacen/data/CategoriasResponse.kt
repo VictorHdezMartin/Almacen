@@ -19,8 +19,9 @@ data class ProductsClass(
     @SerializedName("thumbnail") val imagen: String
 ){ }
 
-// -------------------------------------------------------------------------------------------------
 
+
+// -------------------------------------------------------------------------------------------------
 data class ArticuloClass(
     @SerializedName("availabilityStatus")   val availabilityStatus: String,
     @SerializedName("brand")                val brand: String,

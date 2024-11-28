@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Amacen"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ItemDetailImagenActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ProductoDetalleActivity"
             android:exported="false" />
         <activity

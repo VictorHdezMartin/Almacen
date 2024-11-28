@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/articuloImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"/>
+            android:layout_height="240dp"
+            android:scaleType="fitCenter"/>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

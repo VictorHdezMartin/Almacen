@@ -26,7 +26,7 @@ class ProductosActivity : AppCompatActivity() {
     lateinit var adapter: ProductosAdapter
     lateinit var categoria: String
 
-    var productosList: List<ProductsClass> = emptyList()              // cargamos el listado de PRODUCTO
+    var productosList: List<ProductsClass> = emptyList()                                            // cargamos el listado de PRODUCTO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,13 +41,17 @@ class ProductosActivity : AppCompatActivity() {
             insets
         }
 
-        categoria = intent.getStringExtra(EXTRA_CATEGORIA_ID)!!       // pasamos la CATEGORIA seleccionada
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)                                           // icono de pantalla anterior en el AcctionBar
 
-        adapter= ProductosAdapter(productosList, { position -> val idProducto =  productosList[position].id
-        navigateToDetailProducto(idProducto, categoria) })
+        categoria = intent.getStringExtra(EXTRA_CATEGORIA_ID)!!                                     // pasamos la CATEGORIA seleccionada
 
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = GridLayoutManager(this, 2)  // nº columnas
+        adapter= ProductosAdapter(productosList, { position ->
+            val idProducto =  productosList[position].id
+            navigateToDetailProducto(idProducto, categoria)
+        })
+
+        binding.ProductosRecyclerView.adapter = adapter
+        binding.ProductosRecyclerView.layoutManager = GridLayoutManager(this, 2)          // nº columnas
 
         LoadProductosAPI()
     }
@@ -69,7 +73,7 @@ class ProductosActivity : AppCompatActivity() {
 
         binding.productosCab.setText("${binding.productosCab.text} ${categoria}")
 
-        CoroutineScope(Dispatchers.IO).launch {                                    // hay que ejecutar la consulta en un hilo secundario
+        CoroutineScope(Dispatchers.IO).launch {                                                     // hay que ejecutar la consulta en un hilo secundario
             try {
                 val result = service.ProductosListResponse(categoria)
 
