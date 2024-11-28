@@ -10,12 +10,16 @@ import com.example.amacen.data.ArticuloClass.Meta
 import com.example.amacen.data.ArticuloClass.Review
 import com.example.amacen.utils.DataBase_Manager
 
-class Almacen_DAO(val context: Context) {
+class Almacen_DAO () {
+
+    /*
+}
+
+
+
+    (val context: Context) {
 
     private lateinit var db: SQLiteDatabase
-/*
-  COMENTADO PARA QUE SEA FUNCIONAL
-
 
 
 // Abrir base de datos  ----------------------------------------------------------------------------
@@ -213,5 +217,5 @@ class Almacen_DAO(val context: Context) {
         return list
     }
 
- */
+*/
 }

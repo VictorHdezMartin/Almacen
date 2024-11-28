@@ -10,12 +10,11 @@ import com.example.amacen.data.ArticuloClass.Review
 
 class DataBase_Manager () {
 
-  /* (
+    /*
+
+
+    (
 }context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
-
-
-    COMENTADO PARA QUE SEA FUNCIONAL
-
 
     companion object {
         const val DATABASE_VERSION = 1                        // Si cambias el esquema de la BBDD, debes incrementar la version de la BBDD
@@ -39,8 +38,7 @@ class DataBase_Manager () {
                 "${ArticuloClass.COLUMN_STOCK}                  INT," +
                 "${ArticuloClass.COLUMN_THUMBNAIL}              STRING," +
                 "${ArticuloClass.COLUMN_WARRANTYINFORMATION}    STRING," +
-                "${ArticuloClass.COLUMN_WEIGHT}                 INT," +
-                "${ArticuloClass.COLUMN_META}                   STRING)"
+                "${ArticuloClass.COLUMN_WEIGHT}                 INT)"
 
         private const val SQL_CREATE_TABLE_DIMENSIONS =
             "create table DIMENSIONS (" +
@@ -59,6 +57,8 @@ class DataBase_Manager () {
 
         private const val SQL_CREATE_TABLE_REVIEW =  "create table REVIEW (" +
                 "(${Review.COLUMN_ID}           INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "${Review.COLUMN_ID_ARTICULO}   INTEGER FOREING KEY," +
+                "${Review.COLUMN_DATE}         STRING," +
                  "${Review.COLUMN_COMENT}       STRING," +
                  "${Review.COLUMN_DATE}         STRING," +
                  "${Review.COLUMN_RATING}       INT," +
@@ -89,6 +89,6 @@ class DataBase_Manager () {
         onDestroy(db)
         onCreate(db)
     }
+*/
 
- */
 }
