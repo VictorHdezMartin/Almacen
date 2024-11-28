@@ -9,4 +9,9 @@
     <color name="amarilloFlojo">#FAF8E5</color>
 
 
+    <color name="primaryColor">#F6DF03</color>
+    <color name="primaryColorVariat">#938505</color>
+    <color name="secondaryColor">#04D3ED</color>
+    <color name="secondaryColorVariant">#03A9F4</color>
+
 </resources>

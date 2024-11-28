@@ -3,6 +3,7 @@ package com.example.amacen.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -58,7 +59,10 @@ class ProductosActivity : AppCompatActivity() {
         LoadProductosAPI()
     }
 
-
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_productos_activity, menu)
+        return true
+    }
 
     // Pestaña seleccionada  ---------------------------------------------------------------------------
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
