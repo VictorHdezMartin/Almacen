@@ -16,7 +16,6 @@ import com.example.amacen.adapters.ReviewsAdapter
 import com.example.amacen.data.ArticuloClass
 import com.example.amacen.databinding.ActivityProductoDetalleBinding
 import com.example.amacen.utils.RetroFitProvider
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,7 +32,7 @@ class ProductoDetalleActivity: AppCompatActivity() {
     lateinit var itemArticulo: ArticuloClass
 
  // adapter para las imagenes del content_imagenes
-    lateinit var adapter: ImagenesAdapter
+    lateinit var imagenesAdapter: ImagenesAdapter
     var imagenesList: List<String> = emptyList()
     lateinit var imagenSelect: String
 
@@ -64,49 +63,37 @@ class ProductoDetalleActivity: AppCompatActivity() {
         val id = intent.getIntExtra(EXTRA_PRODUCTO_ID,-1)                               // capturamos el nombre de la categoria seleccionada
 
     //  CREAMOS EL ADAPTER PARA EL RECYCLERVIEW DE LAS IMAGENES EN EL LAYOUT CONTENT_IMAGENES  -----
-        adapter = ImagenesAdapter(imagenesList, { position ->
+        imagenesAdapter = ImagenesAdapter(imagenesList, { position ->
             imagenSelect = imagenesList[position]                                                   // url item seleccionado
-            navigateToImagenes(imagenSelect)
+            navigateToImagenSelect(imagenSelect)
         })
 
-        binding.imagenesContent.ImagesRecyclerView.adapter = adapter
+        binding.imagenesContent.ImagesRecyclerView.adapter = imagenesAdapter
         binding.imagenesContent.ImagesRecyclerView.layoutManager = GridLayoutManager(this, 2)  // nº columnas
 
     //  CREAMOS EL ADAPTER PARA EL RECYCLERVIEW DE LOS REVIEWS EN EL LAYOUT CONTENT_REVIEWS
         reviewsAdapter = ReviewsAdapter(reviewList, { position ->
             reviewSelect =  reviewList[position]                                                    // list de los reviews
-       //     navigateToReviews(reviewSelect)
+            //navigateToReviews(reviewSelect)                                                       // si hacemos click navegamos
         })
 
-        binding.reviewsContent.ReviewsRecyclerView.adapter = adapter
+        binding.reviewsContent.ReviewsRecyclerView.adapter = reviewsAdapter
         binding.reviewsContent.ReviewsRecyclerView.layoutManager = GridLayoutManager(this, 1)  // nº columnas
 
     // ------
         LoadArticulosFromAPI(id)
-
-     // Abrimos la imagen seleccionada en un nuevo activity  ---------------------------------------
-        binding.imagenesContent.imgProductos.setOnClickListener { position ->
-            navigateToImagenSelect()
-        }
-    }
-
-// -------------------------------------------------------------------------------------------------
-    private fun navigateToImagenes(imagen: String) {
-        val intent = Intent(this, ProductoDetalleActivity::class.java)
-        startActivity(intent)
     }
 
 // -------------------------------------------------------------------------------------------------
     private fun navigateToReviews(review: ArticuloClass.Review) {
-        val intent = Intent(this, ProductoDetalleActivity::class.java)
-        startActivity(intent)
+        val intentView = Intent(this, ProductoDetalleActivity::class.java)
+        startActivity(intentView)
     }
 
 // Ir a la imagen seleccionada ---------------------------------------------------------------------
-    private fun navigateToImagenSelect() {
+    private fun navigateToImagenSelect(imagen: String) {
         val intent = Intent(this, ItemDetailImagenActivity::class.java)
-        intent.putExtra(ItemDetailImagenActivity.EXTRA_ADDRESS_URL, "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png")
-       // intent.putExtra(ItemDetailImagenActivity.EXTRA_ADDRESS_URL, imagenSelect)
+        intent.putExtra(ItemDetailImagenActivity.EXTRA_ADDRESS_URL, imagen)
         startActivity(intent)
     }
 
@@ -185,6 +172,7 @@ class ProductoDetalleActivity: AppCompatActivity() {
             caracteristicasContent.rating.text = itemArticulo.rating.toString()
         }
 
-        adapter.updateItems(itemArticulo.images)
+        imagenesAdapter.updateItems(itemArticulo.images)
+        reviewsAdapter.updateItems(itemArticulo.reviews)
     }
 }
