@@ -98,7 +98,7 @@ class ProductoDetalleActivity: AppCompatActivity() {
         startActivity(intent)
     }
 
-// Pestaña seleccionada  ---------------------------------------------------------------------------
+// volver activity anterior  -----------------------------------------------------------------------
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
@@ -118,7 +118,7 @@ class ProductoDetalleActivity: AppCompatActivity() {
                 binding.imagenesContent.root.visibility = View.GONE
                 binding.reviewsContent.root.visibility = View.GONE
             }
-            R.id.menu_medidas -> {
+            R.id.menu_reviews -> {
                 binding.caracteristicasContent.root.visibility = View.GONE
                 binding.reviewsContent.root.visibility = View.VISIBLE
                 binding.imagenesContent.root.visibility = View.GONE

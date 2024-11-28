@@ -8,7 +8,7 @@
         app:showAsAction="always"
         android:title="@string/menu_caracteristicas"/>
     <item
-        android:id="@+id/menu_medidas"
+        android:id="@+id/menu_reviews"
         android:icon="@drawable/icono_medidas"
         app:showAsAction="always"
         android:title="@string/menu_reviews"/>
