@@ -1,6 +1,7 @@
 package com.example.amacen.activities
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -37,5 +38,17 @@ class ItemDetailImagenActivity : AppCompatActivity() {
         var url = intent.getStringExtra(EXTRA_ADDRESS_URL)!!
         Picasso.get().load(url).into(binding.itemImage)
 
+    }
+
+
+    // Pestaña seleccionada  ---------------------------------------------------------------------------
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

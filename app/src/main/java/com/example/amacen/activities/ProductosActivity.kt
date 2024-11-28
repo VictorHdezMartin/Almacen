@@ -3,6 +3,7 @@ package com.example.amacen.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -54,6 +55,19 @@ class ProductosActivity : AppCompatActivity() {
         binding.ProductosRecyclerView.layoutManager = GridLayoutManager(this, 2)          // nº columnas
 
         LoadProductosAPI()
+    }
+
+
+
+    // Pestaña seleccionada  ---------------------------------------------------------------------------
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 // Vamos al activity de Productos, pasando el parametro de busqueda de los productos de la categoria

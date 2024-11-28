@@ -94,6 +94,7 @@ class ProductoDetalleActivity: AppCompatActivity() {
     private fun navigateToImagenSelect(imagen: String) {
         val intent = Intent(this, ItemDetailImagenActivity::class.java)
         intent.putExtra(ItemDetailImagenActivity.EXTRA_ADDRESS_URL, imagen)
+   //  intent.putStringArrayListExtra()
         startActivity(intent)
     }
 
@@ -172,7 +173,10 @@ class ProductoDetalleActivity: AppCompatActivity() {
             caracteristicasContent.rating.text = itemArticulo.rating.toString()
         }
 
-        imagenesAdapter.updateItems(itemArticulo.images)
-        reviewsAdapter.updateItems(itemArticulo.reviews)
+        imagenesList = itemArticulo.images
+        imagenesAdapter.updateItems(imagenesList)
+
+        reviewList = itemArticulo.reviews
+        reviewsAdapter.updateItems(reviewList)
     }
 }
