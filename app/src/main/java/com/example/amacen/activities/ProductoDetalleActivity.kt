@@ -64,8 +64,8 @@ class ProductoDetalleActivity: AppCompatActivity() {
 
     //  CREAMOS EL ADAPTER PARA EL RECYCLERVIEW DE LAS IMAGENES EN EL LAYOUT CONTENT_IMAGENES  -----
         imagenesAdapter = ImagenesAdapter(imagenesList, { position ->
-            imagenSelect = imagenesList[position]                                                   // url item seleccionado
-            navigateToImagenSelect(imagenSelect)
+            //imagenSelect = imagenesList[position]                                                   // url item seleccionado
+            navigateToImagenSelect(position)
         })
 
         binding.imagenesContent.ImagesRecyclerView.adapter = imagenesAdapter
@@ -91,10 +91,10 @@ class ProductoDetalleActivity: AppCompatActivity() {
     }
 
 // Ir a la imagen seleccionada ---------------------------------------------------------------------
-    private fun navigateToImagenSelect(imagen: String) {
+    private fun navigateToImagenSelect(selectedPosition: Int) {
         val intent = Intent(this, ItemDetailImagenActivity::class.java)
-        intent.putExtra(ItemDetailImagenActivity.EXTRA_ADDRESS_URL, imagen)
-   //  intent.putStringArrayListExtra()
+        intent.putExtra(ItemDetailImagenActivity.EXTRA_SELECTED_URL, selectedPosition)
+        intent.putStringArrayListExtra(ItemDetailImagenActivity.EXTRA_URL_LIST, ArrayList(imagenesList))
         startActivity(intent)
     }
 

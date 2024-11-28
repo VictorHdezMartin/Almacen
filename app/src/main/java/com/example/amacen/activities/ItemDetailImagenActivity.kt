@@ -13,10 +13,14 @@ import com.squareup.picasso.Picasso
 class ItemDetailImagenActivity : AppCompatActivity() {
 
     companion object {
-        const val EXTRA_ADDRESS_URL = "EXTRA_ADDRESS_URL"
+        const val EXTRA_URL_LIST = "EXTRA_URL_LIST"
+        const val EXTRA_SELECTED_URL = "EXTRA_SELECTED_URL"
     }
 
     lateinit var binding: ActivityItemDetailImagenBinding
+
+    lateinit var imagenesList: List<String>
+    var selectedPos = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,16 +36,25 @@ class ItemDetailImagenActivity : AppCompatActivity() {
             insets
         }
 
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        var url = intent.getStringExtra(EXTRA_ADDRESS_URL)!!
-        Picasso.get().load(url).into(binding.itemImage)
+        imagenesList = intent.getStringArrayListExtra(EXTRA_URL_LIST)!!.toList()
+        selectedPos = intent.getIntExtra(EXTRA_SELECTED_URL, 0)
+
+        loadImagen(selectedPos)
+
+
+
 
     }
 
+ // Cargo la imagen de la lista  -------------------------------------------------------------------
 
-    // Pestaña seleccionada  ---------------------------------------------------------------------------
+    fun loadImagen(itemPos: Int) {
+        Picasso.get().load(imagenesList[itemPos]).into(binding.itemImage)
+    }
+
+ // Pestaña seleccionada  ---------------------------------------------------------------------------
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
