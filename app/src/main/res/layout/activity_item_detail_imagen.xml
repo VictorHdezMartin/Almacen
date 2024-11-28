@@ -1,53 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.ItemDetailImagenActivity">>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.ItemDetailImagenActivity">
 
-<LinearLayout
-    android:id="@+id/cabeceraIMG"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@color/azul">
-
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icono_almacen"
-        android:tint="@color/white"/>
-
-    <TextView
-        android:id="@+id/cabArticulo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/articulo_detail"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"/>
-</LinearLayout>
-
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_marginTop="6dp"
-    app:cardCornerRadius="32dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/cabeceraIMG">
-
-    <ImageView
-        android:id="@+id/itemImage"
+    <LinearLayout
+        android:id="@+id/cabeceraIMG"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitCenter"/>
-</androidx.cardview.widget.CardView>
+        android:background="@color/azul"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icono_almacen"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/cabGallery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/articulo_detail"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearGallery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cabeceraIMG">
+
+        <ImageView
+            android:id="@+id/itemImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter" />
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/linearGallery"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="2dp">
+
+        <ImageButton
+            android:id="@+id/leftGalleryButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icono_izquierda"
+            android:backgroundTint="@color/white"
+            android:tint="@color/azul"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/galleryRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_margin="8dp"
+            android:layout_weight="8" />
+
+        <ImageButton
+            android:id="@+id/rightGalleryButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icono_derecha"
+            android:backgroundTint="@color/white"
+            android:tint="@color/azul"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

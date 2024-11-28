@@ -93,8 +93,10 @@ class ProductoDetalleActivity: AppCompatActivity() {
 // Ir a la imagen seleccionada ---------------------------------------------------------------------
     private fun navigateToImagenSelect(selectedPosition: Int) {
         val intent = Intent(this, ItemDetailImagenActivity::class.java)
+
         intent.putExtra(ItemDetailImagenActivity.EXTRA_SELECTED_URL, selectedPosition)
         intent.putStringArrayListExtra(ItemDetailImagenActivity.EXTRA_URL_LIST, ArrayList(imagenesList))
+        intent.putExtra(ItemDetailImagenActivity.EXTRA_CABECERA_ID, binding.cabArticulo.text)
         startActivity(intent)
     }
 
