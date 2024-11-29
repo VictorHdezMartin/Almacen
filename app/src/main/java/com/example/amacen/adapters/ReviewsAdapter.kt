@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.amacen.data.ArticuloClass
-import com.example.amacen.databinding.ItemImagenBinding
 import com.example.amacen.databinding.ItemReviewBinding
 
 class ReviewsAdapter (var reviewList: List<ArticuloClass.Review>, val onItemClick:(Int) -> Unit) : RecyclerView.Adapter<Reviews_ViewHolder>() {

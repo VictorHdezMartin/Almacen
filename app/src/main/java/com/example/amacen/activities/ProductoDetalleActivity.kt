@@ -110,7 +110,7 @@ class ProductoDetalleActivity: AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-// Activamos la pestaña selccionadad ---------------------------------------------------------------
+// Activamos la pestaña selccionada ----------------------------------------------------------------
 
     fun setSelectedTab(itemId: Int) : Boolean {
         when (itemId) {
@@ -141,7 +141,7 @@ class ProductoDetalleActivity: AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {                                                     // hay que hacerlo en un hilo secundario
             try {
-                itemArticulo = service.ArticuloListResponse(id)                                     // hacemos la llamada a la API y pasamos la idArticulo
+                itemArticulo = service.ListArticuloResponse(id)                                     // hacemos la llamada a la API y pasamos la idArticulo
 
                 CoroutineScope(Dispatchers.Main).launch {                                           // llamamos al hilo principal para cargar los datos
                     loadData()

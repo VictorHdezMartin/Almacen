@@ -17,7 +17,7 @@ interface CategoriasService {
 
 // llamada al articulo seleccionado     (OK)  -------------------------------------------------------
         @GET("{idArticulo}")
-        suspend fun ArticuloListResponse(@Path("idArticulo") idArticulo: Int) : ArticuloClass
+        suspend fun ListArticuloResponse(@Path("idArticulo") idArticulo: Int) : ArticuloClass
 
 
 }

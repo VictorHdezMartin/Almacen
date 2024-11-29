@@ -15,6 +15,7 @@ import com.example.amacen.adapters.ProductosAdapter
 import com.example.amacen.data.ProductsClass
 import com.example.amacen.databinding.ActivityProductosBinding
 import com.example.amacen.utils.RetroFitProvider
+import com.example.amacen.utils.SessionManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,6 +29,8 @@ class ProductosActivity : AppCompatActivity() {
     lateinit var binding: ActivityProductosBinding
     lateinit var adapter: ProductosAdapter
     lateinit var categoria: String
+
+    lateinit var sessionManager: SessionManager
 
     var productosList: List<ProductsClass> = emptyList()                                            // cargamos el listado de PRODUCTO
 
@@ -51,12 +54,17 @@ class ProductosActivity : AppCompatActivity() {
         adapter= ProductosAdapter(productosList, { position ->
             val idProducto =  productosList[position].id
             navigateToDetailProducto(idProducto, categoria)
+        }, { position ->                                            // favoritos
+            val idProducto =  productosList[position].id
+            sessionManager.toggleFavorite(idProducto)
         })
 
         binding.ProductosRecyclerView.adapter = adapter
         binding.ProductosRecyclerView.layoutManager = GridLayoutManager(this, 2)          // nº columnas
 
         LoadProductosAPI()
+
+        sessionManager = SessionManager(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -76,11 +84,10 @@ class ProductosActivity : AppCompatActivity() {
     }
 
 // Vamos al activity de Productos, pasando el parametro de busqueda de los productos de la categoria
-
     private fun navigateToDetailProducto(idProducto: Int, idCategoria: String) {
-            val intent = Intent(this, ProductoDetalleActivity::class.java)
-            intent.putExtra(ProductoDetalleActivity.EXTRA_CATEGORIA_ID, idCategoria)
-            intent.putExtra(ProductoDetalleActivity.EXTRA_PRODUCTO_ID, idProducto)
+        val intent = Intent(this, ProductoDetalleActivity::class.java)
+        intent.putExtra(ProductoDetalleActivity.EXTRA_CATEGORIA_ID, idCategoria)
+        intent.putExtra(ProductoDetalleActivity.EXTRA_PRODUCTO_ID, idProducto)
         startActivity(intent)
     }
 

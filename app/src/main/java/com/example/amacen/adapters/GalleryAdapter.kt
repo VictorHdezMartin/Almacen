@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.amacen.R
 import com.example.amacen.databinding.ItemGalleryBinding
-import com.example.amacen.databinding.ItemImagenBinding
 import com.squareup.picasso.Picasso
 
 class GalleryAdapter (var imgList: List<String>, var selectedImage: Int, val onItemClick:(Int) -> Unit) : RecyclerView.Adapter<Gallery_ViewHolder>() {
