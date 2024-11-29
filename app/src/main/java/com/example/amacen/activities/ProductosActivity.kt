@@ -99,7 +99,7 @@ class ProductosActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {                                                     // hay que ejecutar la consulta en un hilo secundario
             try {
-                val result = service.ProductosListResponse(categoria)
+                val result = service.ListProductosResponse(categoria)
 
                 CoroutineScope(Dispatchers.Main).launch {                          // volvemos al hilo principal para mostrar resultados
                     if (result.products.isEmpty()) {

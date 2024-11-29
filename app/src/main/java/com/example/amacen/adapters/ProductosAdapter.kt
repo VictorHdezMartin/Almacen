@@ -31,10 +31,17 @@ class ProductosAdapter (var items: List<ProductsClass>, val onItemClick:(Int) ->
     }
 }
 
+// revisar texto de la cabecera, la primera en mayuscula y el resto minusculas  --------------------
+   fun revisarCabecera(texto: String): String {
+       return texto.substring(0, 1).uppercase() +                                                     // primer en mayúsculas
+              texto.substring(1, texto.length).lowercase()                                           // el resto minúsculas
+   }
+
+// -------------
+
 class Producto_ViewHolder(val binding: ItemProductoBinding) : RecyclerView.ViewHolder(binding.root) {
     fun render(Producto: ProductsClass) {
-        binding.ProductosTextView.text = Producto.title.substring(0,1).uppercase() +                     // primer en mayúsculas
-                                         Producto.title.substring(1, Producto.title.length).lowercase()  // el resto minúsculas
+        binding.ProductosTextView.text = revisarCabecera(Producto.title)
 
         Picasso.get().load(Producto.imagen).into(binding.thumbnail)                                      // cargamos la imagen del producto
     }

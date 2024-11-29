@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.amacen.R
 import com.example.amacen.adapters.CategoriasAdapter
 import com.example.amacen.databinding.ActivityMainBinding
 import com.example.amacen.utils.RetroFitProvider
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
     lateinit var adapter: CategoriasAdapter
-    var categoriasList: List<String> = emptyList()              // cargamos el listado de CATEGORIAS
+    var categoriasList: List<String> = emptyList()                                                  // cargamos el listado de CATEGORIAS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,11 +58,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun LoadCategoriasAPI() {
 
-        val service = RetroFitProvider.getRetroFit()                                                // aquí hacemos la consulta
+        val service = RetroFitProvider.getRetroFit()                                                // preparamos la consulta
 
         CoroutineScope(Dispatchers.IO).launch {                                                     // hay que ejecutar la consulta en un hilo secundario
             try {
-                val result = service.CategoriasListResponse()
+                val result = service.ListCategoriasResponse()
 
                 CoroutineScope(Dispatchers.Main).launch {                                           // volvemos al hilo principal para mostrar resultados
                     if (result.isEmpty()) {

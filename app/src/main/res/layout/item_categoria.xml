@@ -7,24 +7,29 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:layout_margin="4dp"
         app:cardCornerRadius="8dp"
-        app:cardElevation="4dp">
+        app:cardElevation="4dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/CategoriasThumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:scaleType="fitCenter"/>
 
         <TextView
             android:id="@+id/CategoriasTextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_gravity="bottom"
-            android:gravity="left"
+            android:gravity="center"
+            android:shadowColor="@color/white"
+            android:background="@color/amarilloFlojo"
+            android:textColor="@color/black"
             android:shadowRadius="5"
             android:textSize="14sp"
-            android:text="Pañales de señoras ya mayores"
-
-            android:background="@color/amarillo"
-            android:shadowColor="@color/white"
-            android:textColor="@color/black"/>
-
+            android:text="Pañales de señoras ya mayores"/>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

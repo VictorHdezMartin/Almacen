@@ -43,7 +43,8 @@ android {
 dependencies {
 
  implementation(libs.filament.android)
-    // dependencias RETROFIT
+
+// dependencias RETROFIT
     val retroFitVersion = "2.11.0"
     implementation("com.squareup.retrofit2:retrofit:$retroFitVersion")                              // RetroFit
     implementation("com.squareup.retrofit2:converter-gson:$retroFitVersion")                        // Gson
@@ -51,10 +52,8 @@ dependencies {
 // dependencia PICASSO
     implementation("com.squareup.picasso:picasso:2.8")                                              // Picasso
 
-// dependencias GLIDE
-//    val Glide = "4.16.0"
-//    implementation("com.github.bumptech.glide:glide$Glide")                                         // La última versión de Glide
-//  annotationProcessor("com.github.bumptech.glide:compiler:$Glide")
+// dependencias sqLITE
+  //  implementation(libs.androidx.sqlite)                      //  hay que copiarlo fichero: 'libs.versions.toml' -> androidx-sqlite = { group = "androidx.sqlite", name = "sqlite", version.ref = "sqlite" }
 
 // Propias de ANDROID
     implementation(libs.androidx.core.ktx)
