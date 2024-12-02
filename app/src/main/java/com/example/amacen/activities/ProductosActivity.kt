@@ -1,17 +1,20 @@
 package com.example.amacen.activities
 
 import android.content.Intent
+import android.icu.text.CaseMap.Title
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.amacen.R
 import com.example.amacen.adapters.ProductosAdapter
+import com.example.amacen.adapters.ordenProductos
 import com.example.amacen.data.ProductsClass
 import com.example.amacen.databinding.ActivityProductosBinding
 import com.example.amacen.utils.RetroFitProvider
@@ -33,6 +36,7 @@ class ProductosActivity : AppCompatActivity() {
     lateinit var sessionManager: SessionManager
 
     var productosList: List<ProductsClass> = emptyList()                                            // cargamos el listado de PRODUCTO
+    var filterProductos: List<ProductsClass> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,18 +73,75 @@ class ProductosActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_productos_activity, menu)
+
+        val menuItem = menu?.findItem(R.id.menu_buscarProducto)!!
+        val searchView = menuItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                Buscar_Producto(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+        })
+
+
+
         return true
     }
 
-    // Pestaña seleccionada  ---------------------------------------------------------------------------
+ // vemos que item se ha seleccionado
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                return true
-            }
+         when (item.itemId ) {
+             android.R.id.home -> {
+                 finish()
+             return true
+         }
+
+         R.id.menu_orden_ascendente -> {
+             Orden_Ascendente(filterProductos)
+             return true
+         }
+
+         R.id.menu_orden_descendente -> {
+             Orden_Descendente(filterProductos)
+             return true
+         }
+
+         else -> {
+             return super.onOptionsItemSelected(item)
+         }
+     }
+ }
+
+// -------
+    fun Buscar_Producto(filtro: String) {
+
+        if (filtro == "%")
+            filterProductos = productosList
+        else
+            filterProductos = productosList.filter { it.title.contains("${filtro}", true) }
+
+        adapter.updateItems(filterProductos)
+    }
+
+// -------
+    fun Orden_Ascendente(filterProductos: List<ProductsClass>) {
+        if (!ordenProductos) {
+            ordenProductos = !ordenProductos
+            adapter.updateItems(filterProductos.sortedBy {it.title})
         }
-        return super.onOptionsItemSelected(item)
+    }
+
+// -------
+    fun Orden_Descendente(filterProductos: List<ProductsClass>) {
+        if (ordenProductos) {
+            ordenProductos = !ordenProductos
+            adapter.updateItems(filterProductos.sortedByDescending {it.title})
+        }
     }
 
 // Vamos al activity de Productos, pasando el parametro de busqueda de los productos de la categoria
@@ -113,7 +174,8 @@ class ProductosActivity : AppCompatActivity() {
                         // Toast.makeText(this, "No se han encontrado resultados", Toast.LENGTH_SHORT).show()
                     } else {
                         productosList = result.products
-                        adapter.updateItems(productosList)
+                        filterProductos = productosList
+                        adapter.updateItems(filterProductos)
                     }
                 }
             } catch (e: Exception) {

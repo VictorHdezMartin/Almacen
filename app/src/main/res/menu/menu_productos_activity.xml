@@ -3,13 +3,20 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_search_producto"
+        android:id="@+id/menu_buscarProducto"
         android:title="@string/buscar"
         android:icon="@drawable/icono_search_producto"
         app:showAsAction="always|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         android:iconTint="@color/white"/>
-
-
-
+    <item
+        android:id="@+id/menu_orden_ascendente"
+        android:icon="@drawable/icono_orden_descendente"
+        app:showAsAction="always"
+        android:title=""/>
+    <item
+        android:id="@+id/menu_orden_descendente"
+        android:icon="@drawable/icono_orden_ascendente"
+        app:showAsAction="always"
+        android:title=""/>
 </menu>

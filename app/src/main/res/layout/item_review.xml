@@ -10,7 +10,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="5dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
         app:cardBackgroundColor="@color/amarilloFlojo">
@@ -32,7 +32,8 @@
                     android:layout_weight="1"
                     android:text="@string/reviews_comment"
                     android:textAlignment="textEnd"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginEnd="8dp"
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:id="@+id/coment"
@@ -40,7 +41,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="aquí va su contenido"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/azul"
+                    android:textSize="12sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -54,7 +56,8 @@
                     android:layout_weight="1"
                     android:text="@string/reviews_date"
                     android:textAlignment="textEnd"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginEnd="8dp"
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:id="@+id/date"
@@ -62,7 +65,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="aquí va su contenido"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/azul"
+                    android:textSize="12sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -76,7 +80,8 @@
                     android:layout_weight="1"
                     android:text="@string/reviews_rating"
                     android:textAlignment="textEnd"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginEnd="8dp"
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:id="@+id/rating"
@@ -84,7 +89,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="aquí va su contenido"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/azul"
+                    android:textSize="12sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -98,7 +104,8 @@
                     android:layout_weight="1"
                     android:text="@string/reviews_reviewerName"
                     android:textAlignment="textEnd"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginEnd="8dp"
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:id="@+id/Name"
@@ -106,7 +113,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="aquí va su contenido"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/azul"
+                    android:textSize="12sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -120,7 +128,8 @@
                     android:layout_weight="1"
                     android:text="@string/reviews_reviewerEmail"
                     android:textAlignment="textEnd"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginEnd="8dp"
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:id="@+id/reviewerEmail"
@@ -128,7 +137,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="aquí va su contenido"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/azul"
+                    android:textSize="12sp"/>
             </LinearLayout>
 
         </LinearLayout>

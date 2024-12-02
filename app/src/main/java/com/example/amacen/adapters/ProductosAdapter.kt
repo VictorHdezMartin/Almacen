@@ -49,6 +49,8 @@ class ProductosAdapter (var items: List<ProductsClass>,
 
 // -------------
 
+var ordenProductos: Boolean = true
+
 class Producto_ViewHolder(val binding: ItemProductoBinding) : RecyclerView.ViewHolder(binding.root) {
 
     val context = itemView.context
@@ -68,13 +70,14 @@ class Producto_ViewHolder(val binding: ItemProductoBinding) : RecyclerView.ViewH
         var isFavorite = SessionManager(context).getFavoriteProducto(Producto.id)
         if (isFavorite) {
             binding.favoritosIMG.setImageResource(R.drawable.icono_like_select)
-            //binding.favoritosIMG.setColorFilter(context.getColor(R.color.rojo))
+         // binding.favoritosIMG.setColorFilter(context.getColor(R.color.rojo))                     // otra manera
 
         } else {
             binding.favoritosIMG.setImageResource(R.drawable.icono_like_unselect)
-            //binding.favoritosIMG.setColorFilter(context.getColor(R.color.azul))
+         // binding.favoritosIMG.setColorFilter(context.getColor(R.color.azul))                     // otra manera
         }
     }
+
     fun VisitasProducto(Producto: ProductsClass) {
         SessionManager(context).addVisitasProducto(Producto.id)
         var visitas = SessionManager(context).getVisitasProducto(Producto.id)

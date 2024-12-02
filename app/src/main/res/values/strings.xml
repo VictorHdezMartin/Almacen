@@ -5,6 +5,15 @@
     <string name="buscar">Buscar</string>
     <string name="articulo_detail">Categoría [ %1$s ] \n - %2$s</string>
 
+<!-- menu_categorias_navegacion  -->
+    <string name="menu_buscar_categoria">Buscar Categoría</string>
+    <string name="menu_ordena_descendente">Orden descendente</string>
+    <string name="menu_orden_ascendente">Orden ascendente</string>
+
+<!-- Finalizar aplicaciónn  -->
+    <string name="FinalizarAPP_titulo">Finalizar - Gestión de Almacén</string>
+    <string name="FinalizarAPP_mensaje">¿Desea salir de la aplicación?</string>
+
 <!-- menu_producto_navegacion  -->
     <string name="menu_caracteristicas">Características</string>
     <string name="menu_reviews">Reseñas</string>
@@ -15,13 +24,13 @@
     <string name="features_brand">Marca</string>
     <string name="features_description">Descripción</string>
     <string name="features_title">Nombre</string>
-    <string name="features_price">Precio</string>
+    <string name="features_price">Precio (€)</string>
     <string name="features_returnPolicy">Política de devoluciones</string>
     <string name="features_shippingInformation">Información de envío</string>
     <string name="features_sku">Seguimiento inventario</string>
     <string name="features_stock">Existencias</string>
     <string name="features_warrantyInformation">Información de garantía</string>
-    <string name="features_weight">Peso</string>
+    <string name="features_weight">Peso (kg)</string>
     <string name="features_minimumOrderQuantity">Pedido mínimo (uds)</string>
     <string name="features_rating">Clasificación</string>
 

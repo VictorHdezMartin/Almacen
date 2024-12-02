@@ -8,13 +8,11 @@ import com.squareup.picasso.Picasso
 
 class CategoriasAdapter (var items: List<String>, val onItemClick:(Int) -> Unit) : RecyclerView.Adapter<Categoria_ViewHolder>() {
 
-       override fun onBindViewHolder(holder: Categoria_ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: Categoria_ViewHolder, position: Int) {
 
-        val Categoria_selected = items[position]
-
-        holder.render(Categoria_selected, items.size, position)
-        holder.itemView.setOnClickListener{onItemClick(position)
-        }
+       val Categoria_selected = items[position]
+       holder.render(Categoria_selected, position)
+       holder.itemView.setOnClickListener { onItemClick(position) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Categoria_ViewHolder {
@@ -33,6 +31,8 @@ class CategoriasAdapter (var items: List<String>, val onItemClick:(Int) -> Unit)
 }
 
 // -----------------------------
+
+var ordenCategorias: Boolean = true
 
 class Categoria_ViewHolder(val binding: ItemCategoriaBinding) : RecyclerView.ViewHolder(binding.root) {
     var URLs = listOf("https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
@@ -60,8 +60,19 @@ class Categoria_ViewHolder(val binding: ItemCategoriaBinding) : RecyclerView.Vie
                       "https://cdn.dummyjson.com/products/images/womens-shoes/Golden%20Shoes%20Woman/1.png",
                       "https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Cellini%20Moonphase/1.png")
 
-    fun render(categoria: String, tamano: Int, position: Int) {
+    fun render(categoria: String, position: Int) {
         binding.CategoriasTextView.text = "   " + revisarCabecera(categoria)
         Picasso.get().load(URLs[position]).into(binding.CategoriasThumbnail)
+
+        var idImg: Int
+        if (ordenCategorias) {
+            var ascURLs = URLs.sorted()
+
+     //       Picasso.get().load(ascURLs[position]).into(binding.CategoriasThumbnail)
+        }
+        else {
+            var descURLs = URLs.sortedDescending()
+            Picasso.get().load(descURLs[position]).into(binding.CategoriasThumbnail)
+        }
     }
 }

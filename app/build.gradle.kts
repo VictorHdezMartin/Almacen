@@ -52,6 +52,9 @@ dependencies {
 // dependencia PICASSO
     implementation("com.squareup.picasso:picasso:2.8")                                              // Picasso
 
+// dependencia para las notificaciones
+  //  implementation("androidx.core:core:2.2.0")
+
 // dependencias sqLITE
   //  implementation(libs.androidx.sqlite)                      //  hay que copiarlo fichero: 'libs.versions.toml' -> androidx-sqlite = { group = "androidx.sqlite", name = "sqlite", version.ref = "sqlite" }
 

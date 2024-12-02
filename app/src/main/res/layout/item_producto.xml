@@ -38,7 +38,7 @@
                     android:layout_gravity="bottom|left"
                     android:backgroundTint="@color/white"
                     android:src="@drawable/icono_like_unselect"/>
-
+                
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
