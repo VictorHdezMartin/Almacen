@@ -165,18 +165,23 @@ class ProductoDetalleActivity: AppCompatActivity() {
 
         with (binding) {
             caracteristicasContent.category.text = itemArticulo.category.toString()
-            caracteristicasContent.brand.text = itemArticulo.brand.toString()
-            caracteristicasContent.descripcion.text = itemArticulo.title.toString()
-            caracteristicasContent.title.text = itemArticulo.title.toString()
-            caracteristicasContent.price.text = itemArticulo.price.toString()
-            caracteristicasContent.returnPolicy.text = itemArticulo.returnPolicy.toString()
-            caracteristicasContent.shippingInformation.text = itemArticulo.shippingInformation.toString()
-            caracteristicasContent.Sku.text = itemArticulo.sku.toString()
-            caracteristicasContent.stock.text = itemArticulo.stock.toString()
-            caracteristicasContent.warrantyInformation.text = itemArticulo.warrantyInformation.toString()
-            caracteristicasContent.weight.text = itemArticulo.weight.toString()
-            caracteristicasContent.minimumOrderQuantity.text = itemArticulo.minimumOrderQuantity.toString()
-            caracteristicasContent.rating.text = itemArticulo.rating.toString()
+            caracteristicasContent.brand.text = itemArticulo.brand?: "sin marca"
+            caracteristicasContent.descripcion.text = itemArticulo.title?: "sin descripción"
+            caracteristicasContent.title.text = itemArticulo.title?: "-sin nombre"
+            caracteristicasContent.price.text = itemArticulo.price.toString()?: "0.00"
+            caracteristicasContent.returnPolicy.text = itemArticulo.returnPolicy?: "no hay política de devolución"
+            caracteristicasContent.shippingInformation.text = itemArticulo.shippingInformation?: "no hay información de envío"
+            caracteristicasContent.Sku.text = itemArticulo.sku?: "no existe valoraciones de almacén"
+            caracteristicasContent.stock.text = itemArticulo.stock.toString()?: "0"
+            caracteristicasContent.warrantyInformation.text = itemArticulo.warrantyInformation?: "información de garantía"
+            caracteristicasContent.weight.text = itemArticulo.weight.toString()?: "0.00"
+            caracteristicasContent.minimumOrderQuantity.text = itemArticulo.minimumOrderQuantity.toString()?: "0"
+            caracteristicasContent.rating.text = itemArticulo.rating.toString()?: "0"
+
+         //   caracteristicasContent.brand.setTextColor(/R.color.rojo)
+
+
+
         }
 
         imagenesList = itemArticulo.images

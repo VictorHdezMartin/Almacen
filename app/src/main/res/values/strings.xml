@@ -28,7 +28,7 @@
     <string name="features_returnPolicy">Política de devoluciones</string>
     <string name="features_shippingInformation">Información de envío</string>
     <string name="features_sku">Seguimiento inventario</string>
-    <string name="features_stock">Existencias</string>
+    <string name="features_stock">Existencias (uds)</string>
     <string name="features_warrantyInformation">Información de garantía</string>
     <string name="features_weight">Peso (kg)</string>
     <string name="features_minimumOrderQuantity">Pedido mínimo (uds)</string>

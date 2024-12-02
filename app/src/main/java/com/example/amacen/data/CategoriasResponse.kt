@@ -6,6 +6,16 @@ data class CategoriasListResponse(
     @SerializedName("categoria") val categorias: List<String>
 ){ }
 
+data class CategoriaClass(
+    var NombreCategoria: String,
+    var imgCategoria: String
+){
+    companion object {
+        val NombreCategoria = String
+        val imgCategoria = String
+    }
+}
+
 // -------------------------------------------------------------------------------------------------
 
 data class ProductosListResponse(
