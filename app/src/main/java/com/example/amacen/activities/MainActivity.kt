@@ -4,6 +4,8 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +26,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import androidx.appcompat.widget.SearchView
 import com.example.amacen.data.CategoriasClass
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
@@ -211,34 +216,59 @@ class MainActivity : AppCompatActivity() {
    private fun LoadImgUrlCategorias() {
        val URLs = listOf(
            "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/fragrances/Chanel%20Coco%20Noir%20Eau%20De/1.png",
-           "https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Sofa/1.png",
-           "https://cdn.dummyjson.com/products/images/groceries/Apple/1.png",
-           "https://cdn.dummyjson.com/products/images/home-decoration/Decoration%20Swing/1.png",
-           "https://cdn.dummyjson.com/products/images/kitchen-accessories/Bamboo%20Spatula/1.png",
-           "https://cdn.dummyjson.com/products/images/laptops/Apple%20MacBook%20Pro%2014%20Inch%20Space%20Grey/1.png",
-           "https://cdn.dummyjson.com/products/images/mens-shirts/Blue%20&%20Black%20Check%20Shirt/1.png",
-           "https://cdn.dummyjson.com/products/images/mens-shoes/Nike%20Air%20Jordan%201%20Red%20And%20Black/1.png",
-           "https://cdn.dummyjson.com/products/images/mens-watches/Brown%20Leather%20Belt%20Watch/1.png",
-           "https://cdn.dummyjson.com/products/images/mobile-accessories/Apple%20Airpods/1.png",
-           "https://cdn.dummyjson.com/products/images/motorcycle/Generic%20Motorcycle/1.png",
-           "https://cdn.dummyjson.com/products/images/skin-care/Olay%20Ultra%20Moisture%20Shea%20Butter%20Body%20Wash/1.png",
-           "https://cdn.dummyjson.com/products/images/smartphones/iPhone%205s/1.png",
-           "https://cdn.dummyjson.com/products/images/sports-accessories/Baseball%20Ball/1.png",
-           "https://cdn.dummyjson.com/products/images/sunglasses/Classic%20Sun%20Glasses/1.png",
-           "https://cdn.dummyjson.com/products/images/tablets/Samsung%20Galaxy%20Tab%20White/1.png",
-           "https://cdn.dummyjson.com/products/images/tops/Blue%20Frock/1.png",
-           "https://cdn.dummyjson.com/products/images/vehicle/300%20Touring/1.png",
-           "https://cdn.dummyjson.com/products/images/womens-bags/Heshe%20Women's%20Leather%20Bag/1.png",
-           "https://cdn.dummyjson.com/products/images/womens-dresses/Black%20Women's%20Gown/1.png",
-           "https://cdn.dummyjson.com/products/images/womens-jewellery/Tropical%20Earring/1.png",
-           "https://cdn.dummyjson.com/products/images/womens-shoes/Golden%20Shoes%20Woman/1.png",
-           "https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Cellini%20Moonphase/1.png"
+           "https://cdn.dummyjson.com/products/images/fragrances/Chanel%20Coco%20Noir%20Eau%20De/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Sofa/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/groceries/Apple/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/home-decoration/Decoration%20Swing/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/kitchen-accessories/Bamboo%20Spatula/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/laptops/Apple%20MacBook%20Pro%2014%20Inch%20Space%20Grey/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/mens-shirts/Blue%20&%20Black%20Check%20Shirt/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/mens-shoes/Nike%20Air%20Jordan%201%20Red%20And%20Black/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/mens-watches/Brown%20Leather%20Belt%20Watch/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/mobile-accessories/Apple%20Airpods/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/motorcycle/Generic%20Motorcycle/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/skin-care/Olay%20Ultra%20Moisture%20Shea%20Butter%20Body%20Wash/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/smartphones/iPhone%205s/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/sports-accessories/Baseball%20Ball/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/sunglasses/Classic%20Sun%20Glasses/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/tablets/Samsung%20Galaxy%20Tab%20White/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/tops/Blue%20Frock/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/vehicle/300%20Touring/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/womens-bags/Heshe%20Women's%20Leather%20Bag/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/womens-dresses/Black%20Women's%20Gown/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/womens-jewellery/Tropical%20Earring/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/womens-shoes/Golden%20Shoes%20Woman/thumbnail.png",
+           "https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Cellini%20Moonphase/thumbnail.png"
        )
 
-       for (index in categoriasList.indices) {
-           categoriasClassList.add(CategoriasClass(categoriasList[index], URLs[index]))
-       }
-       categoriasClassListBackup = categoriasClassList                                              // hacemos la copia de respaldo
+       CoroutineScope(Dispatchers.IO).launch {
+           for (index in categoriasList.indices) {
+               var imgUrl = cargarImagenDesdeURL(URLs[index])!!
+               categoriasClassList.add(CategoriasClass(categoriasList[index], imgUrl))
+           }
+           categoriasClassListBackup = categoriasClassList
+           CoroutineScope(Dispatchers.Main).launch {
+               adapter.updateItems(categoriasClassList)
+               nTotalCategorias()
+           }
+       }                                           // hacemos la copia de respaldo
    }
+
+// Cargar una imagen desde una URL y asignarla a un tipo Bitmap  -----------------------------------
+    suspend fun cargarImagenDesdeURL(url: String): Bitmap? {
+        try {
+         // Abrir la URL y establecer la conexión
+            val urlConnection = URL(url).openConnection() as HttpURLConnection
+            urlConnection.connect()
+
+         // Obtener el InputStream de la conexión
+            val inputStream: InputStream = urlConnection.inputStream
+
+         // Decodificar la imagen desde el InputStream y devolverla como un Bitmap
+            return BitmapFactory.decodeStream(inputStream)
+        } catch (e: Exception) {
+            Log.e("API", e.stackTraceToString())
+            return null
+        }
+    }
 }

@@ -1,6 +1,8 @@
 package com.example.amacen.data
 
+import android.graphics.Bitmap
 import com.google.gson.annotations.SerializedName
+
 
 data class CategoriasListResponse(
     @SerializedName("categorias") val categorias: List<String>
@@ -8,7 +10,7 @@ data class CategoriasListResponse(
 
 data class CategoriasClass (
     @SerializedName("nombreCategoria") var nombreCategoria: String,
-    @SerializedName("urlCategoria")    var urlCategoria: String
+    @SerializedName("imagenURL")       var urlCategoria: Bitmap
 ){ }
 
 // -------------------------------------------------------------------------------------------------

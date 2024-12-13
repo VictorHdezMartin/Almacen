@@ -2,6 +2,7 @@ package com.example.amacen.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.amacen.data.CategoriasClass
 import com.example.amacen.databinding.ItemCategoriaBinding
@@ -36,7 +37,9 @@ class CategoriasAdapter (var items: List<CategoriasClass>, val onItemClick:(Int)
 class Categoria_ViewHolder(val binding: ItemCategoriaBinding) : RecyclerView.ViewHolder(binding.root) {
 
      fun render(categoria: CategoriasClass) {
-        binding.CategoriasTextView.text = "   " + revisarCabecera(categoria.nombreCategoria)
-        Picasso.get().load(categoria.urlCategoria).into(binding.CategoriasThumbnail)
+        binding.CategoriasTextView.text = revisarCabecera(categoria.nombreCategoria)
+        categoria.urlCategoria?.let { binding.CategoriasThumbnail.setImageBitmap(it) }
+
+      //  Picasso.get().load(categoria.urlCategoria).into(binding.CategoriasThumbnail)
     }
 }
