@@ -31,12 +31,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var adapter: CategoriasAdapter
 
     // manejo de categorias
-    var categoriasList: List<String> =
-        emptyList()                                                  // cargamos el listado de CATEGORIAS de internet
-    var categoriasClassList: MutableList<CategoriasClass> =
-        mutableListOf()                         // con esta jugamos
-    var categoriasClassListBackup: MutableList<CategoriasClass> =
-        mutableListOf()                   // backup para recuperar al buscar
+    var categoriasList: List<String> = emptyList()                                                  // cargamos el listado de CATEGORIAS de internet
+    var categoriasClassList: MutableList<CategoriasClass> = mutableListOf()                         // con esta jugamos
+    var categoriasClassListBackup: MutableList<CategoriasClass> = mutableListOf()                   // backup para recuperar al buscar
     var ordenCategorias: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,13 +112,11 @@ class MainActivity : AppCompatActivity() {
     fun Buscar_Categoria(filtro: String) {
         var filterCategorias: List<CategoriasClass>
 
-        categoriasClassList =
-            categoriasClassListBackup                                             // recuperamos la lista original
+        categoriasClassList = categoriasClassListBackup                                             // recuperamos la lista original
         ordenCategorias = !ordenCategorias
 
         if (filtro != "%") {
-            filterCategorias =
-                categoriasClassList.filter { it.nombreCategoria.contains("${filtro}", true) }
+            filterCategorias = categoriasClassList.filter { it.nombreCategoria.contains("${filtro}", true) }
             categoriasClassList = (filterCategorias as MutableList<CategoriasClass>).toMutableList()
         }
 
@@ -139,14 +134,16 @@ class MainActivity : AppCompatActivity() {
     fun Orden_Ascendente() {
         if (!ordenCategorias) {
             ordenCategorias = !ordenCategorias
-            adapter.updateItems(categoriasClassList.sortedBy { it.nombreCategoria })
+            categoriasClassList = categoriasClassList.sortedBy { it.nombreCategoria }.toMutableList()
+            adapter.updateItems(categoriasClassList)
         }
     }
 // -------
     fun Orden_Descendente() {
         if (ordenCategorias) {
             ordenCategorias = !ordenCategorias
-            adapter.updateItems(categoriasClassList.sortedByDescending { it.nombreCategoria })
+            categoriasClassList = categoriasClassList.sortedByDescending { it.nombreCategoria }.toMutableList()
+            adapter.updateItems(categoriasClassList)
         }
     }
 
@@ -189,11 +186,11 @@ class MainActivity : AppCompatActivity() {
 
         val service = RetroFitProvider.getRetroFit()                                                // preparamos la consulta
 
-        CoroutineScope(Dispatchers.IO).launch {                                                     // hay que ejecutar la consulta en un hilo secundario
+        CoroutineScope(Dispatchers.IO).launch {                                    // hay que ejecutar la consulta en un hilo secundario
             try {
                 val result = service.ListCategoriasResponse()
 
-                CoroutineScope(Dispatchers.Main).launch {                                           // volvemos al hilo principal para mostrar resultados
+                CoroutineScope(Dispatchers.Main).launch {                          // volvemos al hilo principal para mostrar resultados
                     if (result.isEmpty() ) {
                         // Toast.makeText(this, "No se han encontrado resultados", Toast.LENGTH_SHORT).show()
                     } else {
