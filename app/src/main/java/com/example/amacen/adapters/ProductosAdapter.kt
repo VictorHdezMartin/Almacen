@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.amacen.R
 import com.example.amacen.data.ProductsClass
-import com.example.amacen.databinding.ItemProductoBinding
 import com.example.amacen.utils.SessionManager
+import com.example.amacen.databinding.ItemProductoBinding
 import com.squareup.picasso.Picasso
 
 class ProductosAdapter (var items: List<ProductsClass>,
@@ -17,6 +17,7 @@ class ProductosAdapter (var items: List<ProductsClass>,
         val Producto_selected = items[position]
 
         holder.render(Producto_selected)
+
         holder.itemView.setOnClickListener{
             onItemClick(position)
             holder.VisitasProducto(Producto_selected) }
@@ -48,8 +49,6 @@ class ProductosAdapter (var items: List<ProductsClass>,
    }
 
 // -------------
-
-var ordenProductos: Boolean = true
 
 class Producto_ViewHolder(val binding: ItemProductoBinding) : RecyclerView.ViewHolder(binding.root) {
 

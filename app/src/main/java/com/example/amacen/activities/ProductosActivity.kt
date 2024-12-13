@@ -14,7 +14,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.amacen.R
 import com.example.amacen.adapters.ProductosAdapter
-import com.example.amacen.adapters.ordenProductos
 import com.example.amacen.data.ProductsClass
 import com.example.amacen.databinding.ActivityProductosBinding
 import com.example.amacen.utils.RetroFitProvider
@@ -37,6 +36,8 @@ class ProductosActivity : AppCompatActivity() {
 
     var productosList: List<ProductsClass> = emptyList()                                            // cargamos el listado de PRODUCTO
     var filterProductos: List<ProductsClass> = emptyList()
+    var productosListBackup: List<ProductsClass> = emptyList()                                      // copia de respaldo
+    var ordenProductos: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,12 +57,12 @@ class ProductosActivity : AppCompatActivity() {
         categoria = intent.getStringExtra(EXTRA_CATEGORIA_ID)!!                                     // pasamos la CATEGORIA seleccionada
 
         adapter= ProductosAdapter(productosList, { position ->
-            val idProducto =  productosList[position].id
-            navigateToDetailProducto(idProducto, categoria)
-        }, { position ->                                            // favoritos
-            val idProducto =  productosList[position].id
-            sessionManager.toggleFavorite(idProducto)
-        })
+                                                        val idProducto =  productosList[position].id
+                                                        navigateToDetailProducto(idProducto, categoria)
+                                                 }, { position ->                                   // favoritos
+                                                        val idProducto =  productosList[position].id
+                                                        sessionManager.toggleFavorite(idProducto)
+                                                 })
 
         binding.ProductosRecyclerView.adapter = adapter
         binding.ProductosRecyclerView.layoutManager = GridLayoutManager(this, 2)          // nº columnas
@@ -87,8 +88,6 @@ class ProductosActivity : AppCompatActivity() {
                 return false
             }
         })
-
-
 
         return true
     }
@@ -117,22 +116,33 @@ class ProductosActivity : AppCompatActivity() {
      }
  }
 
+// -------------------------------------------------------------------------------------------------
+
+    fun nTotalProductos() {
+        binding.TotProductos.text = productosList.size.toString()
+    }
+
 // -------
     fun Buscar_Producto(filtro: String) {
+        var filterProductos: List<ProductsClass>
+        productosList = productosListBackup
+        ordenProductos = !ordenProductos
 
-        if (filtro == "%")
-            filterProductos = productosList
-        else
+        if (filtro != "%") {
             filterProductos = productosList.filter { it.title.contains("${filtro}", true) }
+            productosList = filterProductos
+        }
 
-        adapter.updateItems(filterProductos)
+        adapter.updateItems(productosList)
+
+        nTotalProductos()
     }
 
 // -------
     fun Orden_Ascendente(filterProductos: List<ProductsClass>) {
         if (!ordenProductos) {
             ordenProductos = !ordenProductos
-            adapter.updateItems(filterProductos.sortedBy {it.title})
+            adapter.updateItems(productosList.sortedBy {it.title})
         }
     }
 
@@ -140,7 +150,7 @@ class ProductosActivity : AppCompatActivity() {
     fun Orden_Descendente(filterProductos: List<ProductsClass>) {
         if (ordenProductos) {
             ordenProductos = !ordenProductos
-            adapter.updateItems(filterProductos.sortedByDescending {it.title})
+            adapter.updateItems(productosList.sortedByDescending {it.title})
         }
     }
 
@@ -154,8 +164,8 @@ class ProductosActivity : AppCompatActivity() {
 
  // revisar texto de la cabecera, la primera en mayuscula y el resto minusculas  --------------------
     fun revisarCabecera(texto: String): String {
-        return texto.substring(0,1).uppercase() +                                                     // primer en mayúsculas
-                texto.substring(1, texto.length).lowercase()                                           // el resto minúsculas
+        return texto.substring(0,1).uppercase() +                                                   // primer en mayúsculas
+                texto.substring(1, texto.length).lowercase()                                        // el resto minúsculas
     }
 // Cargamos los datos del las CATEGORIAS de la API  ------------------------------------------------
 
@@ -169,13 +179,14 @@ class ProductosActivity : AppCompatActivity() {
             try {
                 val result = service.ListProductosResponse(categoria)
 
-                CoroutineScope(Dispatchers.Main).launch {                          // volvemos al hilo principal para mostrar resultados
+                CoroutineScope(Dispatchers.Main).launch {                                           // volvemos al hilo principal para mostrar resultados
                     if (result.products.isEmpty()) {
                         // Toast.makeText(this, "No se han encontrado resultados", Toast.LENGTH_SHORT).show()
                     } else {
                         productosList = result.products
-                        filterProductos = productosList
-                        adapter.updateItems(filterProductos)
+                        productosListBackup = productosList
+                        nTotalProductos()
+                        adapter.updateItems(productosList)
                     }
                 }
             } catch (e: Exception) {

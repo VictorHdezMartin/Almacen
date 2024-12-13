@@ -161,7 +161,7 @@ class ProductoDetalleActivity: AppCompatActivity() {
     fun loadData() {
         var categoria = intent.getStringExtra(EXTRA_CATEGORIA_ID)!!
 
-         binding.cabArticulo.text = getString(R.string.articulo_detail, revisarCabecera(categoria), revisarCabecera(itemArticulo.title))
+         binding.cabArticulo.text = getString(R.string.articulo_detail, revisarCabecera(categoria),itemArticulo.title?.let { revisarCabecera(it) })
 
         with (binding) {
             caracteristicasContent.category.text = itemArticulo.category.toString()
