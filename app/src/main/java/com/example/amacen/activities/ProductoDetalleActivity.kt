@@ -162,7 +162,7 @@ class ProductoDetalleActivity: AppCompatActivity() {
         var categoria = intent.getStringExtra(EXTRA_CATEGORIA_ID)!!
 
          binding.cabArticulo.text = getString(R.string.articulo_detail, revisarCabecera(categoria),itemArticulo.title?.let { revisarCabecera(it) })
-
+    
         with (binding) {
             caracteristicasContent.category.text = itemArticulo.category.toString()
             caracteristicasContent.brand.text = itemArticulo.brand.toString()

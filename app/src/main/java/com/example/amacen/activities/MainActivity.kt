@@ -212,38 +212,37 @@ class MainActivity : AppCompatActivity() {
     }
 
 // Cargamos Nombre y Url de Categoria --------------------------------------------------------------
-
-   private fun LoadImgUrlCategorias() {
-       val URLs = listOf(
-           "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/fragrances/Chanel%20Coco%20Noir%20Eau%20De/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Sofa/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/groceries/Apple/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/home-decoration/Decoration%20Swing/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/kitchen-accessories/Bamboo%20Spatula/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/laptops/Apple%20MacBook%20Pro%2014%20Inch%20Space%20Grey/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/mens-shirts/Blue%20&%20Black%20Check%20Shirt/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/mens-shoes/Nike%20Air%20Jordan%201%20Red%20And%20Black/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/mens-watches/Brown%20Leather%20Belt%20Watch/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/mobile-accessories/Apple%20Airpods/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/motorcycle/Generic%20Motorcycle/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/skin-care/Olay%20Ultra%20Moisture%20Shea%20Butter%20Body%20Wash/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/smartphones/iPhone%205s/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/sports-accessories/Baseball%20Ball/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/sunglasses/Classic%20Sun%20Glasses/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/tablets/Samsung%20Galaxy%20Tab%20White/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/tops/Blue%20Frock/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/vehicle/300%20Touring/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/womens-bags/Heshe%20Women's%20Leather%20Bag/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/womens-dresses/Black%20Women's%20Gown/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/womens-jewellery/Tropical%20Earring/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/womens-shoes/Golden%20Shoes%20Woman/thumbnail.png",
-           "https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Cellini%20Moonphase/thumbnail.png"
-       )
+private fun LoadImgUrlCategorias() {
+    val imgMapUrl: Map<String, String> = mapOf(
+        "beauty"              to "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
+        "fragrances"          to "https://cdn.dummyjson.com/products/images/fragrances/Chanel%20Coco%20Noir%20Eau%20De/thumbnail.png",
+        "furniture"           to "https://cdn.dummyjson.com/products/images/furniture/Annibale%20Colombo%20Sofa/thumbnail.png",
+        "groceries"           to "https://cdn.dummyjson.com/products/images/groceries/Apple/thumbnail.png",
+        "home-decoration"     to "https://cdn.dummyjson.com/products/images/home-decoration/Decoration%20Swing/thumbnail.png",
+        "kitchen-accessories" to "https://cdn.dummyjson.com/products/images/kitchen-accessories/Bamboo%20Spatula/thumbnail.png",
+        "laptops"             to "https://cdn.dummyjson.com/products/images/laptops/Apple%20MacBook%20Pro%2014%20Inch%20Space%20Grey/thumbnail.png",
+        "mens-shirts"         to "https://cdn.dummyjson.com/products/images/mens-shirts/Blue%20&%20Black%20Check%20Shirt/thumbnail.png",
+        "mens-shoes"          to "https://cdn.dummyjson.com/products/images/mens-shoes/Nike%20Air%20Jordan%201%20Red%20And%20Black/thumbnail.png",
+        "mens-watches"        to "https://cdn.dummyjson.com/products/images/mens-watches/Brown%20Leather%20Belt%20Watch/thumbnail.png",
+        "mobile-accessories"  to "https://cdn.dummyjson.com/products/images/mobile-accessories/Apple%20Airpods/thumbnail.png",
+        "motorcycle"          to "https://cdn.dummyjson.com/products/images/motorcycle/Generic%20Motorcycle/thumbnail.png",
+        "skin-care"           to "https://cdn.dummyjson.com/products/images/skin-care/Olay%20Ultra%20Moisture%20Shea%20Butter%20Body%20Wash/thumbnail.png",
+        "smartphones"         to "https://cdn.dummyjson.com/products/images/smartphones/iPhone%205s/thumbnail.png",
+        "sports-accessories"  to "https://cdn.dummyjson.com/products/images/sports-accessories/Baseball%20Ball/thumbnail.png",
+        "sunglasses"          to "https://cdn.dummyjson.com/products/images/sunglasses/Classic%20Sun%20Glasses/thumbnail.png",
+        "tablets"             to "https://cdn.dummyjson.com/products/images/tablets/Samsung%20Galaxy%20Tab%20White/thumbnail.png",
+        "tops"                to "https://cdn.dummyjson.com/products/images/tops/Blue%20Frock/thumbnail.png",
+        "vehicle"             to "https://cdn.dummyjson.com/products/images/tops/Blue%20Frock/thumbnail.png",
+        "womens-bags"         to "https://cdn.dummyjson.com/products/images/womens-bags/Heshe%20Women's%20Leather%20Bag/thumbnail.png",
+        "womens-dresses"      to "https://cdn.dummyjson.com/products/images/womens-dresses/Black%20Women's%20Gown/thumbnail.png",
+        "womens-jewellery"    to "https://cdn.dummyjson.com/products/images/womens-jewellery/Tropical%20Earring/thumbnail.png",
+        "womens-shoes"        to "https://cdn.dummyjson.com/products/images/womens-shoes/Golden%20Shoes%20Woman/thumbnail.png",
+        "womens-watches"      to "https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Cellini%20Moonphase/thumbnail.png"
+        )
 
        CoroutineScope(Dispatchers.IO).launch {
            for (index in categoriasList.indices) {
-               var imgUrl = cargarImagenDesdeURL(URLs[index])!!
+               var imgUrl = cargarImagenDesdeURL(imgMapUrl[categoriasList[index]].toString())!!
                categoriasClassList.add(CategoriasClass(categoriasList[index], imgUrl))
            }
            categoriasClassListBackup = categoriasClassList
@@ -251,7 +250,7 @@ class MainActivity : AppCompatActivity() {
                adapter.updateItems(categoriasClassList)
                nTotalCategorias()
            }
-       }                                           // hacemos la copia de respaldo
+       }
    }
 
 // Cargar una imagen desde una URL y asignarla a un tipo Bitmap  -----------------------------------
